@@ -20,8 +20,10 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	UE_LOG(LogTemp, Warning, TEXT("Opening the door: %s"), *GetOwner()->GetName());
+	auto rot = GetOwner()->GetActorRotation();
+	rot.Yaw = -50.0f;
+	GetOwner()->SetActorRotation(rot);
 }
 
 
