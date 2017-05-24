@@ -25,6 +25,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	if (PressurePlate->IsOverlappingActor(PressurePlateActor)) { Open(); }
+	else { Close(); }
 }
 
 void UOpenDoor::Open()
@@ -33,5 +34,11 @@ void UOpenDoor::Open()
 	//auto rot = GetOwner()->GetActorRotation();
 	//rot.Yaw = -50.0f;
 	//GetOwner()->SetActorRotation(rot);
-	GetOwner()->SetActorRotation(FRotator(0.f, -50.f, 0.f));
+	GetOwner()->SetActorRotation(FRotator(0.f, this->OpenAngle, 0.f));
+}
+
+void UOpenDoor::Close()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Closing the door: %s"), *GetOwner()->GetName());
+	GetOwner()->SetActorRotation(FRotator(0.f, 0.f, 0.f));
 }
