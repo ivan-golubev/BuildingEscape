@@ -25,7 +25,8 @@ public:
 
 private:
 		UPROPERTY(VisibleAnywhere)
-		float OpenAngle = 90.f;
+		float OpenAngle = -50.f;
+
 		UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate;
 
