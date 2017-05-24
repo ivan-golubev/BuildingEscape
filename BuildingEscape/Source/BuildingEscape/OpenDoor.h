@@ -18,6 +18,7 @@ public:
 protected:
 	void Open();
 	void Close();
+	void CheckDoorConditions();
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
@@ -28,6 +29,11 @@ public:
 private:
 		UPROPERTY(VisibleAnywhere)
 		float OpenAngle = -50.f;
+
+		UPROPERTY(EditAnywhere)
+		float DoorCloseDelay = 1.f;
+
+		float LastDoorOpenTime = 0.f;
 
 		UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate;

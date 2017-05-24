@@ -6,6 +6,9 @@
 *.sdf
 *.sln
 *.vc.db
+*.ipch
+*.db-shm
+*.db-wal
 
 # Unreal generated Files
 */Binaries

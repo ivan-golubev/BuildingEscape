@@ -24,8 +24,7 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	if (PressurePlate->IsOverlappingActor(PressurePlateActor)) { Open(); }
-	else { Close(); }
+	CheckDoorConditions();
 }
 
 void UOpenDoor::Open()
@@ -34,11 +33,24 @@ void UOpenDoor::Open()
 	//auto rot = GetOwner()->GetActorRotation();
 	//rot.Yaw = -50.0f;
 	//GetOwner()->SetActorRotation(rot);
-	GetOwner()->SetActorRotation(FRotator(0.f, this->OpenAngle, 0.f));
+	GetOwner()->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
 }
 
 void UOpenDoor::Close()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Closing the door: %s"), *GetOwner()->GetName());
 	GetOwner()->SetActorRotation(FRotator(0.f, 0.f, 0.f));
+}
+
+void UOpenDoor::CheckDoorConditions()
+{
+	if (PressurePlate->IsOverlappingActor(PressurePlateActor)) 
+	{
+		Open();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+	}
+	else if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay) 
+	{
+		Close();
+	}
 }
