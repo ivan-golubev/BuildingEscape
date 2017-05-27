@@ -20,3 +20,4 @@
 # starter pack
 BuildingEscape/Content/StarterContent/Textures
 BuildingEscape/Content/StarterContent/HDRI
+*.opendb
