@@ -29,7 +29,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 void UOpenDoor::Open()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Opening the door: %s"), *GetOwner()->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("Opening the door: %s"), *GetOwner()->GetName());
 	//auto rot = GetOwner()->GetActorRotation();
 	//rot.Yaw = -50.0f;
 	//GetOwner()->SetActorRotation(rot);
@@ -38,18 +38,18 @@ void UOpenDoor::Open()
 
 void UOpenDoor::Close()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Closing the door: %s"), *GetOwner()->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("Closing the door: %s"), *GetOwner()->GetName());
 	GetOwner()->SetActorRotation(FRotator(0.f, 0.f, 0.f));
 }
 
 void UOpenDoor::CheckDoorConditions()
 {
-	if (PressurePlate->IsOverlappingActor(PressurePlateActor)) 
+	if (PressurePlate->IsOverlappingActor(PressurePlateActor))
 	{
 		Open();
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
-	else if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay) 
+	else if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
 	{
 		Close();
 	}

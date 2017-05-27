@@ -39,4 +39,5 @@ private:
 		ATriggerVolume* PressurePlate;
 
 		AActor* PressurePlateActor;
+		
 };
