@@ -16,9 +16,7 @@ UPositionReporter::UPositionReporter()
 // Called when the game starts
 void UPositionReporter::BeginPlay()
 {
-	Super::BeginPlay();		
-	UE_LOG(LogTemp, Warning, TEXT("%s:: BeginPlay() "), *GetOwner()->GetName());	
-	UE_LOG(LogTemp, Warning, TEXT("The object location is: (%s)"), *GetOwner()->GetTransform().GetLocation().ToString());
+	Super::BeginPlay();
 }
 
 
