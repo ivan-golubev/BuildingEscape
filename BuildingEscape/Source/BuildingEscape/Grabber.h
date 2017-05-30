@@ -31,4 +31,5 @@ private:
 	void Grab();
 	void Release();
 	FHitResult GetPhysicsBodyInReach();
+	FVector GetRayCastEnd();
 };
