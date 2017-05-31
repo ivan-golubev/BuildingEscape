@@ -36,7 +36,7 @@ void UOpenDoor::Close()
 	GetOwner()->SetActorRotation(FRotator(0.f, 0.f, 0.f));
 }
 
-float UOpenDoor::GetMassOnPlate() { 
+float UOpenDoor::GetMassOnPlate() const { 
 	float totalMass = 0.f;
 	TArray<AActor*> actors;
 	PressurePlate->GetOverlappingActors(actors);

@@ -36,14 +36,14 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	if ( PhysicsHandle->GrabbedComponent ) { PhysicsHandle->SetTargetLocation( GetRayCastEnd() ); }
 }
 
-FVector UGrabber::GetRayCastEnd() {
+FVector UGrabber::GetRayCastEnd() const {
 	FVector playerLocation;
 	FRotator playerRotation;
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(playerLocation, playerRotation);
 	return playerLocation + playerRotation.Vector() * Reach;
 }
 
-FHitResult UGrabber::GetPhysicsBodyInReach()
+FHitResult UGrabber::GetPhysicsBodyInReach() const
 {
 	FVector playerLocation;
 	FRotator playerRotation;

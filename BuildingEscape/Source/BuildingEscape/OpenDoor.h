@@ -38,5 +38,5 @@ private:
 		UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate;	
 
-		float GetMassOnPlate();		
+		float GetMassOnPlate() const;		
 };
