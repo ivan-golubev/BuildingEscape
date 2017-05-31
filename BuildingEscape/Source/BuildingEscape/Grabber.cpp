@@ -22,8 +22,15 @@ void UGrabber::BindController()
 {
 	/// Look for the attached Physics Handle
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	if (!PhysicsHandle) {
+		UE_LOG(LogTemp, Warning, TEXT("PhysicsHandle component is missing"));
+	}
 	/// Look for attached Input Controller
-	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();	
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+	if (!InputComponent) {
+		UE_LOG(LogTemp, Warning, TEXT("InputComponent component is missing"));
+		return;
+	}
 	/// bind the input axis
 	InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 	InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);

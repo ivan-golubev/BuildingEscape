@@ -36,7 +36,7 @@ private:
 		float MassThreshold = 30.f;
 
 		UPROPERTY(EditAnywhere)
-		ATriggerVolume* PressurePlate;	
+		ATriggerVolume* PressurePlate = nullptr;	
 
 		float GetMassOnPlate() const;		
 };
