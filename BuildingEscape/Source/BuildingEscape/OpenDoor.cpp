@@ -26,17 +26,6 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	CheckDoorConditions();
 }
 
-void UOpenDoor::Open()
-{
-	//GetOwner()->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
-	OnOpenRequest.Broadcast();
-}
-
-void UOpenDoor::Close()
-{	
-	GetOwner()->SetActorRotation(FRotator(0.f, 0.f, 0.f));
-}
-
 float UOpenDoor::GetMassOnPlate() const { 
 	if (!PressurePlate) { return 0.f; }
 	float totalMass = 0.f;
@@ -51,12 +40,6 @@ float UOpenDoor::GetMassOnPlate() const {
 
 void UOpenDoor::CheckDoorConditions()
 {
-	if (GetMassOnPlate() >= MassThreshold) {
-		Open();
-		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
-	}	
-	else if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
-	{
-		Close();
-	}
+	if (GetMassOnPlate() >= MassThreshold) { OnOpen.Broadcast(); }	
+	else { OnClose.Broadcast(); }
 }
